@@ -1,18 +1,20 @@
 # Sudoku
 
-## Librerías necesarias
-Para poder compilar y ejecutar el código hace falta tener descargado la librería gráfica **Gloss** (`cabal install gloss`) y **System.Random** (`cabal install random`) para generar números aleatorios sin necesidad de utilizar semillas. Es necesario tener `cabal` para las instalaciones.
+## Required Libraries
+To compile and run the code, you need to have the **Gloss** graphics library downloaded (`cabal install gloss`) and **System.Random** (`cabal install random`) to generate random numbers without the need for using seeds. You must have `cabal` for installations.
 
-También hemos ejecutado los comandos `cabal install --lib [paquete]` para añadir al entorno las librerías sin tener que cargarlas a mano cada vez que se compile.
+We have also executed the commands `cabal install --lib [package]` to add the libraries to the environment without manually loading them every time we compile.
 
-Nosotros hemos utilizado un Mac para compilar y ejecutar el programa. Para compilarlo, desde el directorio en el que se encuentra el archivo (o dando la ruta completa) en terminal: `ghc PF_Practica4.hs`. Con ello se crea el ejecutable y se puede ejecutar directamente con `./PF_Practica4`.
+We used a Mac to compile and run the program. To compile it, from the directory containing the file (or providing the full path) in the terminal: `ghc PF_Practica4.hs`. This creates the executable, and you can run it directly with `./PF_Practica4`.
 
-## Funcionamiento del programa
-Hemos realizado un programa interactivo para el usuario que es capaz de generar tableros de Sudokus y de que el usuario cree su propio tablero. Además, para cualquiera de los dos tipos de tablero, el programa puede tanto resolverlos, como hacer que el usuario juegue a solucionarlo.
+## Program Functionality
+We've created an interactive program for the user that can generate Sudoku boards and allow the user to create their own board. Additionally, for both types of boards, the program can solve them or allow the user to play and solve them.
+
 
 ![picture 3](images/main.png)  
 
-En cualquiera de las dos opciones se puede elegir la **dificultad del juego**, que es el tamaño del tablero (4x4, 6x6 o 9x9). La opción seleccionada estará marcada con otro color y es necesario tener una opción elegida para crear o generar.
+In either of the two options, you can choose the **game difficulty**, which corresponds to the size of the board (4x4, 6x6, or 9x9). The selected option will be highlighted with a different color, and it's necessary to have a chosen option to create or generate.
+
 
 ![picture 4](images/generar.png)  | ![picture 6](images/crear.png)  
 :-------------:|:---------------:
@@ -21,11 +23,11 @@ En cualquiera de las dos opciones se puede elegir la **dificultad del juego**, q
 ![picture 7](images/crear1.png) | ![picture 9](images/crear2.png) |![picture 10](images/crear3.png)  
 :-------------:|:---------------:|:---------------:
 
-### Generar Sudoku
-Una vez elegida la dificultad se genera un Sudoku con al menos una solución. El usuario puede elegir entre las opciones:
-1. **Otro tablero**, que generaría otro tablero de la misma dificultad.
-2. **Resolver**, el programa buscaría una solución y se mostraría al usuario. En el caso de que una celda pudiera tomar varios valores, se dejaría la celda en blanco, sin ningún número encima.
-3. **Jugar nivel**, el programa llevaría a la interfaz de jugar, donde podrá solucionar el Sudoku generado.
+### Generate Sudoku
+Once the difficulty is chosen, a Sudoku with at least one solution is generated. The user can choose from the following options:
+1. **Another board**, which would generate another board of the same difficulty.
+2. **Solve**, the program would search for a solution and display it to the user. In case a cell could take multiple values, the cell would remain blank without any number on it.
+3. **Play level**, the program would take the user to the playing interface, where they can solve the generated Sudoku.
 
  
 ![picture 2](images/generar2_4x4.png) | ![picture 3](images/generar2_4x4_resolver.png) | ![picture 1](images/generar2_9x9.png)   
@@ -33,33 +35,36 @@ Una vez elegida la dificultad se genera un Sudoku con al menos una solución. El
 
 <div style="page-break-after: always"></div>
 
-### Crear Sudokus
+### Create Sudokus
 
-En esta interfaz, es el usuario quien crea el Sudoku. La dificultad, al igual que en el caso de "Generar Sudoku", viene dado por la dimensión del tablero. Las opciones son:
-1. **Nuevo tablero**, que limpia el Sudoku entero.
-2. **Resolver**, el programa buscaría si existe solución para el tablero planteado y en caso afirmativo lo mostraría. En el caso de que haya soluciones múltiples, solo se indican las celdas con valor fijo.
-3. **Jugar nivel**, el programa verifica que es un tablero con solución y llevaría a la interfaz de jugar, donde se jugaría el nivel creado.
+In this interface, it's the user who creates the Sudoku. The difficulty, just like in the case of "Generate Sudoku," is determined by the dimension of the board. The options are:
+1. **New board**, which clears the entire Sudoku.
+2. **Solve**, the program would search if there's a solution for the posed board and, if affirmative, display it. In case of multiple solutions, only cells with fixed values are indicated.
+3. **Play level**, the program verifies that it's a solvable board and takes the user to the playing interface, where they can play the created level.
 
-> NOTA: solo se permite introducir números del 1 al n, siendo n la dimensión del Sudoku. En el caso de intentar introducir un caracter o un número mayor el programa lo ignoraría. Para eliminar el dígito de una celda (siempre que no sea uno fijo) se puede eliminar con la tecla Supr, Delete o pulsando el número 0.
+> NOTE: Only numbers from 1 to n are allowed, where n is the dimension of the Sudoku. In case of attempting to input a character or a number greater than n, the program would ignore it. To remove the digit from a cell (provided it's not a fixed one), it can be deleted using the Delete, Backspace, or pressing the number 0 key.
 
-Ejemplo creando un tablero con solución única:
+Example of creating a board with a unique solution:
+
 ![](images/jugar2_4x4.png) | ![](images/jugar2_4x4_2.png)
 :-------------:|:---------------:
 
-Ejemplo creando un tablero sin solución, al darle a "Resolver" o "Jugar nivel" aparece un aviso:
+Example of creating a board without a solution. When clicking "Solve" or "Play level," a notification appears:
+
 ![](images/jugar2_4x4_nosol.png) | ![](images/jugar2_4x4_aviso.png)
 :-------------:|:---------------:
 
 <div style="page-break-after: always"></div>
 
-### Jugar Sudokus
+### Playing Sudokus
 
-El tablero se vuelve interactivo, las pistas se volverán de color gris y no se podrán alterar. Dentro de esta opción:
-1. Hay un **indicador del tiempo** que llevamos jugando, en segundos.
-2. Se puede **comprobar** el tablero en cualquier momento y se indicarán en rojo las casillas que se repiten con otras bien sea en filas, columnas o regiones; y en verde las que no.
-3. Se puede **reiniciar** el nivel, limpiando todas las casillas que no fueran las iniciales y restableciendo el tiempo a 0.
+The board becomes interactive, the hints will turn gray and cannot be altered. Within this option:
+1. There's a **time indicator** showing how long we've been playing, in seconds.
+2. You can **check** the board at any time, and cells that repeat with others in rows, columns, or regions will be highlighted in red; those that don't repeat will be highlighted in green.
+3. You can **restart** the level, clearing all non-initial cells and resetting the timer to 0.
 
-> NOTA: solo se pueden introducir números del 1 al n, al igual que en "Crear Sudoku" y el funcionamiento es el mismo.
+> NOTE: Only numbers from 1 to n can be entered, just like in "Create Sudoku," and the functionality is the same.
+
 
 ![picture 11](images/jugar4x4.png) | ![picture 12](images/jugar6x6.png)
 :-------------:|:---------------:
@@ -69,11 +74,12 @@ El tablero se vuelve interactivo, las pistas se volverán de color gris y no se 
 
 <div style="page-break-after: always"></div>
 
-## Código interfaz
+## Interface Code
 
-Se ha utilizado la librería `Gloss` y más concretamente, `Gloss.Interface.Game` . Gloss es muy útil para pintar vectores en 2d, animaciones y simulaciones puesto que utiliza OpenGL. El inconveniente es que no es tan cómodo crear botones y *widgets* y hay que crearlos a mano, como mostraremos a continuación. 
+The `Gloss` library has been used, specifically, `Gloss.Interface.Game`. Gloss is very useful for drawing 2D vectors, animations, and simulations as it utilizes OpenGL. However, it's not as convenient for creating buttons and widgets, which need to be manually crafted, as we'll demonstrate below.
 
-Para empezar, se ha definido el dato `GameState` que indica la página de la interfaz en la que estamos:
+To begin with, the `GameState` data has been defined, which indicates the interface page we are on:
+
 
 ```
 data GameState = MainMenu | GenMenu1 Int | GenMenu2 Sudoku
@@ -83,64 +89,68 @@ data GameState = MainMenu | GenMenu1 Int | GenMenu2 Sudoku
 
 data Selected = Maybe (Int, Int)
 ```
-A cada página de la interfaz se pasan unos parámetros diferentes dependiendo de lo que se necesita mostrar. Por ejemplo, `MainMenu` no necesita de ningún parámetro, mientras que  `GenMenu2` tiene el Sudoku generado para mostrarlo por pantalla.
+A different set of parameters is passed to each interface page depending on what needs to be displayed. For example, `MainMenu` doesn't require any parameters, while `GenMenu2` has the generated Sudoku to display.
 
-El código para la interfaz se divide a grandes rasgos en:
-1. Definiendo "variables":
-   - Implementamos un nuevo tipo de dato, `type Bounds = (Float, Float, Float, Float)` que corresponden a las coordenadas de la esquina izquierda superior (coord. x, coord. y), ancho y alto.
-   - Hemos definido los `Bounds` de todos los botones que usamos en la interfaz.
-   - Hemos definido los colores que usamos en nuestra interfaz (haciendo uso de `(Gloss) makeColor`).
+The code for the interface can be broadly divided into the following sections:
 
-2. Mostrar diferentes páginas: Utilizamos la función `printWorld :: GameState -> IO Picture` que dado un estado del juego se imprime la interfaz correspondiente.
-   - Hemos definido previamente los `Bounds` y los colores de los botones para poderlos imprimir desde esta función.
-   - Para crear el tablero, hemos implementado una función para visualizar el tablero del Sudoku `paintSudoku`. Pintamos la cuadrícula con la función `paintSudokuField` y añadimos los valores y colores a las casillas con `paintSudokuCell`.
+1. Defining "variables":
+   - We've implemented a new data type, `type Bounds = (Float, Float, Float, Float)`, which represents the coordinates of the upper-left corner (x-coordinate, y-coordinate), width, and height.
+   - We've defined the `Bounds` for all the buttons used in the interface.
+   - We've defined the colors used in our interface (using `(Gloss) makeColor`).
 
+2. Displaying different pages: We use the function `printWorld :: GameState -> IO Picture`, which, given the game state, displays the corresponding interface.
+   - We've previously defined the `Bounds` and button colors to be able to display them from this function.
+   - To create the board, we've implemented a function to visualize the Sudoku board called `paintSudoku`. We draw the grid using the `paintSudokuField` function and add values and colors to the cells using `paintSudokuCell`.
 
-3. Actuar frente a las diferentes acciones: `handleEvents` es una función que se encarga de decidir qué hacer cuando recibe una acción del usuario. `handleEvents :: Event -> GameState -> IO GameState`
-   - `Event` conforma las diferentes acciones que pueden ocurrir, desde presionar o soltar una tecla o mover el ratón.
-   - Recibe el evento con el estado del juego actual y retorna otro, un `IO GameState`.
-   - Para retornar otro estado, llamamos a funciones auxiliares, cada una dedicada a un menú concreto, para organizar mejor el código. Ejemplos de estas auxiliares son: `mainMenuEvent`, `genMenu1Event` o `creatMenu2Event` que reciben un evento, y miran con `inBounds` si se ha clickeado dentro del `Bounds` de un botón.
+3. Responding to different actions: The `handleEvents` function decides what to do when it receives a user action. `handleEvents :: Event -> GameState -> IO GameState`
+   - An `Event` encompasses various actions that can occur, such as pressing or releasing a key or moving the mouse.
+   - It takes the current game state along with the event and returns a new game state wrapped in `IO`.
+   - To return a new state, we call auxiliary functions, each dedicated to a specific menu, to better organize the code. Examples of these auxiliaries are `mainMenuEvent`, `genMenu1Event`, or `creatMenu2Event`, which receive an event and use `inBounds` to check if a button's `Bounds` has been clicked.
 
-4. Registrar tiempo de juego. Utilizamos `elapseTime :: Float -> GameState -> IO GameState`, que indica el tiempo que ha transcurrido desde el último frame que se ha enseñado por pantalla y cuando estamos en el menú de jugar incrementamos el tiempo en ese valor.
+4. Registering game time: We use `elapseTime :: Float -> GameState -> IO GameState`, which indicates the time elapsed since the last frame shown on the screen. When in the play menu, we increment the time by this value.
 
-5. Crear botones: creamos unos *widgets*, que al pulsar en ellas desencadenan ciertas acciones.
-   - Con el nuevo tipo, pintamos los rectángulos, utilizando `rectangle`. Está formado por un polígono (`(Gloss) polygon`) relleno al que le pasamos un color (definidos con `(Gloss) makeColor`), unas lineas como contorno (`(Gloss) line`) y un texto que se muestra, dándole además un alineamiento horizontal respecto al botón y tamaño de la letra.
-   - Crear los botones: `button`. Se llama a `rectangle` especificando un tamaño de letra.
+5. Creating buttons: We create widgets that trigger certain actions when clicked.
+   - With the new data type, we draw rectangles using `rectangle`. It consists of a filled polygon (`(Gloss) polygon`) to which we pass a color (defined with `(Gloss) makeColor`), outline lines (`(Gloss) line`), and text for display. Additionally, we set horizontal alignment and font size for the button.
+   - Creating buttons: `button`. We call `rectangle` with specified font size.
 
-## Código de la mecánica del juego
+## Game Mechanics Code
 
-### Generar Sudokus
-Generamos primero el tablero lleno (para asegurar que tiene al menos una solución) y dejamos un número aleatorio entre el 35% y 45% de pistas. 
+### Generating Sudokus
+We first generate a filled board (to ensure it has at least one solution) and then leave a random number of clues between 35% and 45%.
 
-Para ello, hemos implementado la función `generate` que se encarga de poner primero todos los 1's en posiciones aleatorias, comprobando que no se repitan por fila, columna ni región. A continuación, los 2's en los huecos restantes, verificando que no se repitan, y así hasta el número n, que corresponde a la dimensión del Sudoku.
+To achieve this, we've implemented the `generate` function, which first places all the 1's in random positions, ensuring they don't repeat within rows, columns, or regions. Next, the 2's are placed in the remaining spots, verifying that they also don't repeat, and this process continues up to the number 'n', which corresponds to the dimension of the Sudoku.
 
-Esto lo hacemos llamando a `genField`, que utiliza `genLoop`, que realiza iteraciones intentando meter valores en el tablero. En el caso de que llegados a un punto el tablero no tenga solución, y por tanto no se pueda seguir rellenando, `genLoop` aborta y  `genField` vuelve a llamarlo, para generar un nuevo tablero.
+We achieve this by calling `genField`, which utilizes `genLoop` to iterate and attempt to place values on the board. In cases where the board reaches a point without a solution, and thus cannot be further filled, `genLoop` aborts, and `genField` calls it again to generate a new board.
 
-> De media, el 4x4 rara vez falla, el 6x6 falla unas 15 de media con desviación típica 5 y el 9x9, generalmente, entre 1000 y 3000. En cualquier caso, esto es muy rápido y en menos de medio segundo se consiguen obtener todos los tableros.
+> On average, the 4x4 rarely fails, the 6x6 fails around 15 times on average with a standard deviation of 5, and the 9x9 generally falls between 1000 and 3000 times. In any case, this process is very fast, and all boards can be generated in less than half a second.
 
-<div style="page-break-after: always"></div>
-
-### Resolver Sudokus
-
-Utilizamos un método de combinatoria. A cada celda se le asigna una lista con los posibles valores que puede tomar la casilla. Esta información la almacenaremos en el denominado tablero de valores. Inicialmente si el Sudoku tenía una pista en una celda, sus posibles valores es únicamente dicho valor, y si no, los posibles valores serían todos los números.
-
-También se tiene por cada fila, columna y grupo (a partir de ahora denominados conjuntos), una lista de todas las posibles combinaciones de valores que pueden tomar las celdas de estos conjuntos.
-
-El algoritmo consiste en actualizar el tablero de valores a base de analizar todas las combinaciones de todos los conjuntos. Del mismo modo, a medida que las celdas del tablero tienen menos posibles valores, diversas combinaciones tienen que ser descartadas ya que ya no son válidas. Tras varias iteraciones se consigue reducir el tablero y las combinaciones hasta un punto en el que ya se tiene un único valor posible por celda, y una única combinación por conjunto, y por tanto se devuelve la solución obtenida. Es posible que si existen varias soluciones llegue a un punto en el que no se puedan reducir más las combinaciones, por lo que se retornaría las soluciones obtenidas hasta ese momento.
-
-Hemos creado la función `solve` que implementa este algoritmo, que empieza llamando a `solStart` que realiza una sincronización inicial para reducir el tablero de valores dadas todas las posibles combinaciones iniciales del Sudoku. Luego se llama a `solLoop` que realiza en bucle el descartar combinaciones inválidas tras la sincronización anterior, y resincronizar el tablero de nuevo. Una vez no se realicen mas cambios en las sincronizaciones de una iteración del bucle (bien porque se ha llegado a la solución final o se ha llegado a un punto donde no se diferencian más las posibles soluciones), se retorna el resultado.
-
-Si el Sudoku a resolver no tiene solución, llegará un momento en el que el algoritmo dejará a un conjunto sin posibles combinaciones de valores para sus celdas, lo detectará y abortará la ejecución devolviendo `Nothing`.
-
-### Comprobar solución
-Utilizamos este método para cuando el usuario quiere comprobar si el tablero con los números introducidos es correcto. Una celda tiene un valor correcto si su valor no se repite en la fila, columna y grupo en la que está. La celda se coloreará de verde si su valor es correcto y rojo si existen conflictos. Las casillas sin número seguirán siendo de color blanco.
-
-Para verificar si el valor de una celda es correcto, obtenemos una lista que represente los valores de las celdas de la fila a la que pertenece, y comprobamos que no se repita su valor en ninguna de estas celdas. Lo mismo para la columna y grupo al que pertenece.
-
-Para colorear el tablero usamos función `colorSudoku` que itera sobre todas las celdas verificando sus valores llamando a la función `colorCell`, al que se le pasan las 3 listas de los valores de las celdas de su misma fila, columna y grupo. Para obtener estas listas, en el caso de filas es fácil ya que el propio Sudoku es una lista de filas, por lo que se puede acceder a la fila directamente, para las columnas hay que usar la transposición de la matriz del Sudoku para acceder directamente a ella, pero para los grupos es mas complejo y se hace uso de las funciones `getGrpsMat` para modificar la matriz y de `pos2grp` para saber a que índice acceder.
 
 <div style="page-break-after: always"></div>
 
-### Código de funciones auxiliares
+### Solving Sudokus
 
-Hemos definido varias funciones de utilidades, que se mencionan en este apartado ya que no son específicas ni de la mecánica del juego ni de la interfaz, si no que son usadas a lo largo y ancho de todo el programa. Estas funciones están todas debidamente comentadas en el código, pero ejemplos de estas son: `member`, `removeDups`, `getValMat` y `setValMat`, `getGrpsMat`, `fracture`, `size2dim`, entre otros. La mayoría de estas funciones son polimorfas, para poder abstraer el tipo de las mismas y poder usarse en diferentes situaciones, como por ejemplo `createMat`, que se usa en varias ocasiones para crear matrices tanto de `Int`'s, como de `Bool`'s y de `Color`'s.
+We employ a combinatorial approach to solve Sudokus. Each cell is assigned a list of possible values it can take, which is stored in the so-called value board. Initially, if a Sudoku has a given value in a cell, its list of possible values consists only of that specific value. If not, the possible values would be all numbers.
+
+For each row, column, and group (referred to as sets from now on), there's also a list of all possible combinations of values that the cells within these sets can take.
+
+The algorithm involves updating the value board by analyzing all combinations within all sets. As cells on the board have fewer possible values, various combinations must be discarded since they're no longer valid. After multiple iterations, the value board and combinations are reduced to a point where each cell has a unique possible value, and each set has a unique combination. Thus, the obtained solution is returned. If there are multiple solutions, the process might reach a point where combinations can't be reduced further, and the solutions obtained until that moment are returned.
+
+We've created the `solve` function to implement this algorithm. It starts by calling `solStart`, which performs an initial synchronization to reduce the value board based on all possible initial combinations of the Sudoku. Then, `solLoop` is called in a loop to discard invalid combinations after the previous synchronization and to re-synchronize the value board. Once no further changes are made to the synchronizations in an iteration of the loop (either because the final solution is reached or because no more distinct solutions can be distinguished), the result is returned.
+
+If the Sudoku to be solved has no solution, there will be a point where the algorithm leaves a set without any possible combinations of values for its cells. This situation will be detected, and the execution will be aborted, returning `Nothing`.
+
+
+### Checking Solution
+
+We use this method when the user wants to verify if the board with the entered numbers is correct. A cell has a correct value if its value is not repeated in the row, column, and group it belongs to. The cell will be colored green if its value is correct and red if conflicts exist. Empty cells will remain white.
+
+To verify if the value of a cell is correct, we obtain a list representing the values of the cells in the same row, and we ensure that its value is not repeated within these cells. The same process is applied to the column and group to which the cell belongs.
+
+To color the board, we use the `colorSudoku` function that iterates through all cells, checking their values and calling the `colorCell` function. This function receives the three lists of values from cells in the same row, column, and group. Obtaining these lists is straightforward for rows since the Sudoku itself is a list of rows, so we can directly access the row. For columns, we need to use the transpose of the Sudoku matrix to access them directly. For groups, it's more complex, and we use the `getGrpsMat` function to modify the matrix and the `pos2grp` function to determine the index to access.
+
+<div style="page-break-after: always"></div>
+
+### Auxiliary Functions Code
+
+We have defined several utility functions that are mentioned in this section since they are not specific to either the game mechanics or the interface. Instead, they are used extensively throughout the entire program. These functions are all properly documented in the code, but examples include `member`, `removeDups`, `getValMat` and `setValMat`, `getGrpsMat`, `fracture`, `size2dim`, among others. Most of these functions are polymorphic, allowing them to abstract the type and be used in various situations. For instance, `createMat` is used in multiple instances to create matrices of `Int`s, `Bool`s, and `Color`s.
+
